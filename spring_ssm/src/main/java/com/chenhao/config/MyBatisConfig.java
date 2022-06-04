@@ -3,6 +3,8 @@ package com.chenhao.config;
 import org.mybatis.spring.SqlSessionFactoryBean;
 import org.mybatis.spring.mapper.MapperScannerConfigurer;
 import org.springframework.context.annotation.Bean;
+import org.springframework.jdbc.datasource.DataSourceTransactionManager;
+import org.springframework.transaction.PlatformTransactionManager;
 
 import javax.sql.DataSource;
 
@@ -22,7 +24,7 @@ public class MyBatisConfig {
     public SqlSessionFactoryBean sqlSessionFactory(DataSource dataSource){
         SqlSessionFactoryBean ssfb = new SqlSessionFactoryBean();
         // 设置别名
-        ssfb.setTypeAliasesPackage("com.itheima.domain");
+        ssfb.setTypeAliasesPackage("com.chenhao.domain");
         // 设置数据源
         ssfb.setDataSource(dataSource);
         return ssfb;
@@ -36,7 +38,15 @@ public class MyBatisConfig {
     public MapperScannerConfigurer mapperScannerConfigurer(){
         MapperScannerConfigurer msc = new MapperScannerConfigurer();
         // 指定扫描映射配置文件/接口的路径
-        msc.setBasePackage("com.itheima.mapper");
+        msc.setBasePackage("com.chenhao.dao");
         return msc;
+    }
+
+    //配置事务管理器，mybatis使用的是jdbc事务
+    @Bean
+    public PlatformTransactionManager transactionManager(DataSource dataSource){
+        DataSourceTransactionManager dtm = new DataSourceTransactionManager();
+        dtm.setDataSource(dataSource);
+        return dtm;
     }
 }

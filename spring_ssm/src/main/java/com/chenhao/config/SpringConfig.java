@@ -14,8 +14,9 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  */
 
 @Configuration
-@ComponentScan({"com.chenhao.service"}) //组件扫描，扫非web层
+@ComponentScan({"com.chenhao.service","com.chenhao.advice"}) //组件扫描，扫非web层
 @Import({JdbcConfig.class,MyBatisConfig.class}) //引入分配置类，有条件省略
 @EnableTransactionManagement // 启用事务管理器
+@EnableAspectJAutoProxy //启用通知管理
 public class SpringConfig {
 }
