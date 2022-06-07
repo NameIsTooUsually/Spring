@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chenhao.mapper.UserMapper">
+
+    <select id="findByClassId" resultType="com.chenhao.domain.UserVo">
+        SELECT
+        t1.id,t1.name,t1.mobile,t1.`status`,
+        t1.is_deleted,t1.role_id,t1.class_id,
+        t1.group_id,t1.group_name,t1.integral,
+        t2.groupsIntegral
+        FROM `user` AS t1,
+        (SELECT group_id,SUM(integral) AS groupsIntegral FROM `user`
+        WHERE class_id = 1 AND role_id=2 GROUP BY group_id ) AS t2
+        WHERE
+        t1.group_id = t2.group_id AND
+        t1.class_id = #{classId} AND
+        t1.role_id = 2;
+    </select>
+    
+
+</mapper>
