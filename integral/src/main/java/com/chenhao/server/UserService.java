@@ -16,4 +16,6 @@ public interface UserService {
     List<UserVo> findByClassId(Integer classId);
 
     boolean addIntegral(User user);
+
+    boolean resetGScoreByGroupId(Integer classId);
 }

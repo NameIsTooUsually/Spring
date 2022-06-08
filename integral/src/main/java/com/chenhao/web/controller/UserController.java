@@ -50,4 +50,17 @@ public class UserController {
 
         }
     }
+
+    @GetMapping("/resetGScoreByGroupId/{classId}")
+    public ResponseResult resetGScoreByGroupId(@PathVariable Integer classId){
+        boolean flag = userService.resetGScoreByGroupId(classId);
+
+        if (flag){
+            //操作成功
+            return new ResponseResult(0,"操作成功","重置成功");
+        }else{
+            return new ResponseResult(1,"操作失败","重置失败");
+
+        }
+    }
 }

@@ -52,5 +52,11 @@ public class UserServiceImpl implements UserService {
         return flag>0;
     }
 
+    @Override
+    public boolean resetGScoreByGroupId(Integer classId) {
+        int result= userMapper.resetGScoreByGroupId(classId);
+        return result>0;
+    }
+
 
 }

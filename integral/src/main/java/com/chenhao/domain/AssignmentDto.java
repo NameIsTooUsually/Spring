@@ -16,15 +16,11 @@ import java.sql.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@TableName("user_student_assignment")
-public class Assignment {
-    private Integer id;
-    private Integer userId;
+public class AssignmentDto {
     private String name;
-    private Integer assignmentId;
-    private String assignmentName;
-    private Integer assignmentType;
-    private Integer status;
+    private String memo;
+    private Integer type;
     private Date createdOn;
-    private Character isDeleted;
+
+
 }

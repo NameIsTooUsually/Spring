@@ -15,4 +15,7 @@ public interface UserMapper extends BaseMapper<User> {
 
     @Update("update user set integral = integral+#{integral} where id = #{id}")
     int addIntegral(User user);
+
+    @Update("update user set integral=0 where class_id = #{classId}")
+    int resetGScoreByGroupId(Integer classId );
 }
